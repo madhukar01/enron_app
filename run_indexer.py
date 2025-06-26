@@ -1,27 +1,20 @@
 from src.indexing.create_index import build_index
-from src.indexing.index_io import save_index
 
 # root directory for the email data.
-DATA_DIR = "data/sample"
+DATA_DIR = "data/maildir"
 
-# path for storing output index file.
+# path for the output index file.
 INDEX_FILE = "index.json"
 
 
 def main() -> None:
     """
-    Main function to run the indexing process and save the index.
+    Main function to run the indexing process.
     """
     print(f"Starting indexing process for directory: {DATA_DIR}")
+    print(f"Index will be saved to: {INDEX_FILE}")
 
-    inverted_index = build_index(DATA_DIR)
-
-    if inverted_index:
-        print(f"Saving index to {INDEX_FILE}...")
-        save_index(inverted_index, INDEX_FILE)
-        print("Index saved successfully.")
-    else:
-        print("Index creation failed or created empty index.")
+    build_index(DATA_DIR, INDEX_FILE, chunk_size=2000)
 
 
 if __name__ == "__main__":

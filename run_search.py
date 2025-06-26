@@ -17,11 +17,14 @@ def main() -> None:
         print("Could not load index. Exiting.")
         return
 
-    sorted_keys = list(index.keys())
+    # index on disk may be unsorted if the indexer is running.
+    # sort the keys here to ensure binary search works.
+    # in a production app - we should pre-sort the index on disk
+    sorted_keys = sorted(index.keys())
     print("Index loaded successfully.")
 
     # --- Example Search ---
-    search_term_str = "forecast"
+    search_term_str = "che"
     print(f"\nSearching for term: '{search_term_str}'")
 
     results = search_term(index, sorted_keys, search_term_str, limit=5)
