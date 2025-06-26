@@ -13,7 +13,7 @@ def save_index(index: InvertedIndex, file_path: str) -> None:
         file_path: path to output file.
     """
     try:
-        with open(file_path, 'w', encoding='utf-8') as f:
+        with open(file_path, "w", encoding="utf-8") as f:
             json.dump(index, f, indent=4)
     except IOError as e:
         print(f"Error saving index to {file_path}: {e}")
@@ -30,7 +30,7 @@ def load_index(file_path: str) -> InvertedIndex:
         Loaded inverted index.
     """
     try:
-        with open(file_path, 'r', encoding='utf-8') as f:
+        with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
             if isinstance(data, dict):
                 return data
