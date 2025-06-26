@@ -37,6 +37,8 @@ def build_index(root_dir: str) -> InvertedIndex:
                 index[token].append(file_path)
 
     print(f"Indexing complete. Processed {file_count} files.")
+    print("Sorting index for faster search...")
 
-    # return regular dict to store in json
-    return dict(index)
+    # sort the index by key
+    sorted_items = sorted(index.items())
+    return dict(sorted_items)
